@@ -1,0 +1,27 @@
+
+.answers {
+
+  &_new {
+      flex-direction: column;
+      background-color: $header_back_color;
+      width:100%;
+      padding:30px;
+    &-contact {
+      border: 1px solid white;
+      padding:10px;
+      margin:30px;
+    }
+    > form {
+        @include position_center;
+        flex-direction: column;
+      & textarea {
+        @include form-input;
+      }
+      & input[type="submit"] {
+        @include form-btn;
+        margin-top:30px;
+      }
+    }
+  }
+
+}

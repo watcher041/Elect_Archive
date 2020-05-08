@@ -1,0 +1,33 @@
+
+.users_show
+  %h2 PROFILE
+  .users_show-profile
+    .users_show-profile-info
+      .users_show-profile-info-image 
+        = image_tag @user.image.url
+      .users_show-profile-info-list
+        %h3 【投稿者】
+        %p= @user.name
+        %h3 【メールアドレス】
+        %p= @user.email
+    -if @user.text
+      %h3 【自己紹介】
+      = simple_format(@user.text)
+
+  %h2 POSTS
+  -@posts.each do |post|
+    .users_show-profile
+      .users_show-profile-info
+        .users_show-profile-info-image 
+          = image_tag post.image.url
+        .users_show-profile-info-list
+          %h3 【タイトル】
+          %p= post.title
+          %h3 【著者】
+          %p= post.author
+        - if user_signed_in? && @user.id == current_user.id 
+          .users_show-profile-info-edit
+            %p=link_to "編集", edit_post_path(post.id)
+            %p=link_to "削除", post_path(post.id), method: "delete"
+      %h3 【書籍情報】
+      = simple_format(post.text)

@@ -1,0 +1,8 @@
+
+%h2 問い合わせ掲示板
+.comments_index
+  .comments_index-board
+    - @comments.each do |comment|
+      = link_to  new_comment_answer_path(comment.id) do
+        %p= "#{comment.created_at.strftime('%Y/%m/%d %H:%M') }  着信"
+        %p= "#{comment.name}  > #{comment.text}"

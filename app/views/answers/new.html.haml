@@ -1,0 +1,15 @@
+
+%h2 返答フォーム
+.answers_new
+  - if @answer.errors.any?
+    - @answer.errors.full_messages.each do |error|
+      %p= error
+  - else
+    .answers_new-contact
+      %p= "#{@comment.created_at.strftime('%Y/%m/%d %H:%M') }  着信"
+      %p= "#{@comment.name}様 > #{@comment.text}" 
+    = form_with( model: [@comment,@answer], local: true) do |form|
+      = form.hidden_field :name, value: current_user.name
+      = form.hidden_field :comment_id, value: @comment.id
+      = form.text_area :text, placeholder: "返答内容" ,rows: 5
+      = form.submit "送信"

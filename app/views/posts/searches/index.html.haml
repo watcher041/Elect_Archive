@@ -1,0 +1,20 @@
+
+%h2 #{@posts.length}件ヒットしました
+- @posts.each do |post|
+  .users_show-profile
+    .users_show-profile-info
+      .users_show-profile-info-image
+        = link_to user_path(post.user.id) do
+          = image_tag post.image.url
+      .users_show-profile-info-list
+        %h3 【タイトル】
+        %p= post.title
+        %h3 【著者】
+        %p= post.author
+      .users_show-profile-info-list
+        %h3 【投稿者】
+        %p= post.user.name
+        %h3 【投稿日】
+        %p= post.created_at.strftime('%Y/%m/%d %H:%M') 
+    %h3 【書籍情報】
+    = simple_format(post.text)

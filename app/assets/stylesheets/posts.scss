@@ -1,0 +1,87 @@
+
+.posts {
+
+  &_index {
+    &-top {
+        width:100%;
+        height:600px;
+        background-image: url("archive.jpg");
+        background-size: cover;
+        @include position_center;
+        flex-direction: column;
+      > h1,h3{
+        background-color: white;
+        padding:0 10px;
+        border:none;
+        color:black;
+      }
+      > h3 {
+        font-size:20px;
+      }
+    }
+    &-about {
+        background-color: $header_back_color;
+        padding:20px 50px;
+        color: white;
+      > h1 {
+        text-align: center;
+        padding-top: 20px;
+        color: white;
+      }
+      & form {
+          @include position_center;
+          flex-direction: column;
+        > input[type="text"]{
+          @include form-input;
+          margin:30px;
+        }
+        > input[type="submit"]{
+          @include form-btn;
+        }
+      } 
+    }
+    &-contents {
+        background-color: $header_back_color;
+        @include position_center;
+        justify-content: space-around;
+        align-items: flex-start;
+        border-top:1px solid;
+        padding:30px 10px;
+      &-contact {
+          text-align: center;
+        > form {
+            @include position_center;
+            flex-direction: column;
+          & input[type="text"],textarea {
+            @include form-input;
+            width:100%;
+          }
+          & input[type="submit"]{
+            @include form-btn;
+            margin:30px;      
+          }
+        }       
+      }
+      &-comment {
+          width:40%;
+        > h1 {
+          text-align: center;
+        }
+        > div {
+          border:1px solid;
+          width:100%;
+          height:200px;
+          overflow: scroll;
+          padding:10px;
+        }
+      }  
+    }
+  }
+
+  &__form {
+    background-color: $header_back_color;
+    padding:30px;
+  }
+
+}
+

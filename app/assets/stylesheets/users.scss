@@ -1,0 +1,48 @@
+
+.users{
+
+  &_show {
+   &-profile {
+        background-color: $header_back_color;
+      > h3 {
+        text-align: center;
+      }
+      > p {
+        width:100%;
+        font-size:20px;
+        padding:0 50px 50px;
+      }
+     &-info{
+          @include position_center;
+          border:1px solid;
+          position: relative;
+        &-image {
+            @include image_base_size;
+            @include position_center;
+            margin:50px;
+          > img {
+            @include image_resize;
+          }
+        }
+        &-list {
+            @include position_center;
+            flex-direction: column;
+            margin-right:40px;
+            width:500px;
+          > h3 {
+            margin:0;
+          }
+          > p {
+            font-size:20px;
+            margin:0 0 30px;
+          }
+        }
+        &-edit {
+            position: absolute;
+            right:50px;
+        }
+     }
+   }
+  }
+
+}
