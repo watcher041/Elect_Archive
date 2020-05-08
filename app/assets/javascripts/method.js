@@ -1,9 +1,9 @@
 
   function answer_form(user_name,comment_name,comment_id){
 
-    let target = $(".posts_index-contents-contact");
+     var target = $(".posts_index-contents-contact");
 
-    let html = `<h1>${comment_name} へ 返信</h1>
+     var html = `<h1>${comment_name} へ 返信</h1>
                 <form action="/comments/${comment_id}/answers" accept-charset="UTF-8"  method="post">
                   <input name="utf8" type="hidden" value="✓">
                   <input value=${user_name} type="hidden" name="name">

@@ -6,10 +6,10 @@ $(function(){
   $(".image-file").on("change",function(event){
 
     // イベントから画像のファイル情報を抜き出す
-    let file = event.target.files[0];
+     var file = event.target.files[0];
     
     // FileReaderオブジェクトを作成します
-    let reader = new FileReader();
+     var reader = new FileReader();
 
     // DataURIScheme文字列を取得します
     reader.readAsDataURL(file);
@@ -18,10 +18,10 @@ $(function(){
     reader.onload = function () {
   
       // 読み込んだファイルの内容を取得して変数imageに代入します
-      let image = this.result;
+       var image = this.result;
 
       // ラベルのノードを取得
-      let label = $('.file-image').get(0);
+       var label = $('.file-image').get(0);
 
       // 画像の差し替えを行う
       label.src = image;
