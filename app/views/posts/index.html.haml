@@ -4,30 +4,40 @@
   .posts_index-top
     %h1 古書に出会いたいあなたへ
     %h3 ここで探してみませんか？
-
-  .posts_index-about
-    %h1 ABOUT SITE
-    %p
-    　このサイトは、古書を探している方々がその所在をすぐ見つけられるようにするために作成されたサイトです。
-    古書を投稿したい方は、新規登録をしてログインを実施してから新規投稿してください。
-    古書を探している方はここで検索していただき、もし無ければ以降にあるフォームでお問い合わせください。
-    = form_with( url:posts_searches_path, local: true, method: :get) do |form|
-      = form.text_field :keyword, placeholder: "投稿を検索する"
-      = form.submit "検索"
-  .posts_index-contents
-    .posts_index-contents-contact
-      %h1 お問い合わせ
-      %p 検索しても見つからない場合は、お問い合わせください。
-      = form_with( url: comments_path, method: "post", local: true) do |form|
-        = form.text_field :name, placeholder: "お名前"
-        = form.text_area :text, placeholder: "お問い合わせ内容" ,rows: 5
-        = form.submit "送信"
-    .posts_index-contents-comment
-      %h1 返信一覧
-      %div
-        - @answers.each do |answer|
-          %p= "#{answer.created_at.strftime('%Y/%m/%d %H:%M') }  返信"
-          %p= "#{answer.comment.name}様 > #{answer.text}"
-          %p= "担当者：#{answer.name}"
-        
+  
+  .posts_index-middle
+    .posts_index-left_side
+      %h3 keywords
+      %ur
+      - @tags.each do |key,value|
+        %li
+          =link_to posts_searches_path(keyword: key) do
+            ="#{key}　#{value}冊"
+    .posts_index-right_side
+      .posts_index-about
+        %h1 ABOUT SITE
+        %p
+        　このサイトは、古書を探している方々がその所在をすぐ見つけられるようにするために作成されたサイトです。
+        古書を投稿したい方は、新規登録をしてログインを実施してから新規投稿してください。
+        古書を探している方はここで検索していただき、隣のジャンルから探していただいても良いです。
+        もし無ければ以降にあるフォームでお問い合わせください。
+        = form_with( url: posts_searches_path, local: true, method: :get) do |form|
+          = form.text_field :keyword, placeholder: "投稿を検索する"
+          = form.submit "検索"
+      .posts_index-contact
+        %h1 お問い合わせ
+        %p 検索しても見つからない場合は、お問い合わせください。
+        = form_with( url: comments_path, method: "post", local: true) do |form|
+          = form.text_field :name, placeholder: "お名前"
+          = form.text_area :text, placeholder: "お問い合わせ内容" ,rows: 5
+          = form.submit "送信"
+      .posts_index-comment
+        %h1 返信一覧
+        %div
+          - @answers.each do |answer|
+            %p= "#{answer.created_at.strftime('%Y/%m/%d %H:%M') }  返信"
+            %p= "#{answer.comment.name}様 > #{answer.text}"
+            %p= "担当者：#{answer.name}"
+    
+  
 

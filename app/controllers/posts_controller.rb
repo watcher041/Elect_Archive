@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @answers = Answer.includes(:comment).order("updated_at DESC")
+    @tags = tags_count()
   end
 
   def new
@@ -32,18 +33,28 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.delete
+    @post.destroy
     redirect_to root_path
   end
 
   private
   
   def post_params
-    params.require(:post).permit(:title,:author,:image,:text).merge(user_id:current_user.id)
+    params.require(:post).permit(:title,:author,:image,:text,:user_id,tags_attributes:[:name,:_destroy,:id])
   end
 
   def find_post
     @post = Post.find(params[:id])
+  end
+
+  def tags_count
+
+    # 重複するタグをグループ化する（要素の前後に空白があればstripで取り除く）
+    ary = Tag.pluck(:name).map(&:strip).group_by(&:itself)
+
+    # ひとつのタグを持つ本がいくつあるかハッシュで表示
+    return ary.map{ |key, value| [key, value.count] }.to_h
+
   end
 
 end

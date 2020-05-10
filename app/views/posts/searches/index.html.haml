@@ -2,16 +2,16 @@
 %h2 #{@posts.length}件ヒットしました
 - @posts.each do |post|
   .users_show-profile
-    .users_show-profile-info
-      .users_show-profile-info-image
+    .users_show-info
+      .users_show-image
         = link_to user_path(post.user.id) do
           = image_tag post.image.url
-      .users_show-profile-info-list
+      .users_show-list
         %h3 【タイトル】
         %p= post.title
         %h3 【著者】
         %p= post.author
-      .users_show-profile-info-list
+      .users_show-list
         %h3 【投稿者】
         %p= post.user.name
         %h3 【投稿日】

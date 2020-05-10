@@ -11,12 +11,12 @@
   %body
 
     .header
-      %h1= link_to "Elect Archive",root_path 
+      %h1= link_to "Elect Archive", root_path 
       .header-nav
         - if user_signed_in?
           = link_to  "掲示板", comments_path
           = link_to  "新規投稿", new_post_path
-          .header-nav-lists
+          .header-lists
             = current_user.name
             %ul
               %li= link_to "マイページ", user_path(current_user.id)
@@ -27,7 +27,8 @@
           = link_to "新規登録", new_user_registration_path
     
     .contents
-      = render 'layouts/notifications'
+      - flash.each do |key, value|
+        = content_tag :div, value, class: key
       = yield
 
     .footer

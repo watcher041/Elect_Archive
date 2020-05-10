@@ -1,21 +1,25 @@
 
 .posts__form
   - if post.errors.any?
-    - post.errors.full_messages.each do |error|
-      %p= error
+    .error
+      - post.errors.full_messages.each do |error|
+        %p= error
   - else
     = form_with(model: post, local: true) do |form|
       .registration_edit-top
-        .registration_edit-top-list
-          .field
-            = form.text_field :title, placeholder: "title（タイトル）"
-          .field
-            = form.text_field :author, placeholder: "author（著者）"
-        = form.label :image, class:"registration_edit-top-image" do
+        .registration_edit-list        
+          = form.text_field :title, placeholder: "title（タイトル）"
+          = form.text_field :author, placeholder: "author（著者）"
+        = form.label :image, class:"registration_edit-image" do
           = form.file_field :image, class: "image-file"
           = image_tag post.image.url ,class: "file-image" 
-      .field
-        = form.text_area :text, placeholder: "text（書籍紹介）" , rows: 10
-      .actions
-        = form.submit "SEND"
+      %br
+      = form.text_area :text, placeholder: "text（書籍紹介）" , rows: 10
+      %br
+      = form.fields_for :tags do |list|
+        = list.text_field :name
+        = list.remove_nested_fields_link '削除'
+      = form.add_nested_fields_link :tags ,'タグを追加'
+      = form.hidden_field :user_id, value: current_user.id
+      = form.submit "SEND"
 

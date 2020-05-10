@@ -11,17 +11,6 @@
       padding:10px;
       margin:30px;
     }
-    > form {
-        @include position_center;
-        flex-direction: column;
-      & textarea {
-        @include form-input;
-      }
-      & input[type="submit"] {
-        @include form-btn;
-        margin-top:30px;
-      }
-    }
   }
 
 }
