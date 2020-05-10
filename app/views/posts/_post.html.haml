@@ -16,7 +16,7 @@
       %br
       = form.text_area :text, placeholder: "text（書籍紹介）" , rows: 10
       %br
-      = form.fields_for :tags do |list|
+      = form.nested_fields_for :tags do |list|
         = list.text_field :name
         = list.remove_nested_fields_link '削除'
       = form.add_nested_fields_link :tags ,'タグを追加'
