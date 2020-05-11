@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   end
 
   def find_post
-    @post = Post.find(params[:id])
+    @post = Post.includes(:tags).find(params[:id])
   end
 
   def tags_count

@@ -38,8 +38,10 @@ form {
   padding:30px;
   & fieldset {
     width:80%;
+    border:none;
     > input {
-      width:90%;
+      width:80%;
+      margin-right:20px;
     }
   }
   & label {

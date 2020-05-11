@@ -16,9 +16,10 @@
       %br
       = form.text_area :text, placeholder: "text（書籍紹介）" , rows: 10
       %br
-      = form.nested_fields_for :tags do |list|
-        = list.text_field :name
-        = list.remove_nested_fields_link '削除'
+      %br
+      = form.nested_fields_for :tags, post.tags do |list|
+        = list.text_field :name, placeholder: "tag（タグ）"
+        = list.remove_nested_fields_link 'タグを削除'
       = form.add_nested_fields_link :tags ,'タグを追加'
       = form.hidden_field :user_id, value: current_user.id
       = form.submit "SEND"
