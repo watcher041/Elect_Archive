@@ -5,7 +5,7 @@
     &-top {
       margin:0 auto;
       height:600px;
-      background-image: url("archive.jpg");
+      background-image: image-url("archive.jpg");
       background-size: cover;
       @include position_center;
       flex-direction: column;
