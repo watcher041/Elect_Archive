@@ -29,12 +29,11 @@
     &-list {
       @include position_center;
       flex-direction: column;
-      > h3 {
-        margin:0;
-      }
       > p {
         font-size:20px;
         margin:0 0 30px;
+        width:70%;
+        word-wrap: break-word;
       }
     }
     &-edit {
