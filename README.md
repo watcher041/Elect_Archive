@@ -1,3 +1,3 @@
 # README
 
-![ER図](/Users/watcher/Documents/my_app/Elect_Archive/master/erd.jpg)
+![ER図](https://github.com/watcher041/Elect_Archive/blob/master/erd.jpg)
