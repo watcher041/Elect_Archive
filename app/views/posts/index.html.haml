@@ -11,7 +11,7 @@
       %ur
       - @tags.each do |tag|
         %li
-          =link_to posts_searches_path(keyword: tag) do
+          =link_to posts_searches_path(keyword: tag.name) do
             ="#{tag.name}　#{tag.posts.count}冊"
     .posts_index-right_side
       .posts_index-about
