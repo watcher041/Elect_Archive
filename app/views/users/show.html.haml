@@ -10,11 +10,6 @@
         %p= @user.name
         %h3 【メールアドレス】
         %p= @user.email
-        %i{class:"fas fa-star"}
-        %i{class:"fas fa-star"}
-        %i{class:"fas fa-star"}
-        %i{class:"fas fa-star"}
-        %i{class:"fas fa-star"}
     -if @user.text
       %h3 【自己紹介】
       = simple_format(@user.text)
