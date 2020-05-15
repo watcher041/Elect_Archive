@@ -29,10 +29,12 @@
     &-list {
       @include position_center;
       flex-direction: column;
+      width:30%;
       > p {
+        text-align: center;
         font-size:20px;
         margin:0 0 30px;
-        width:70%;
+        width:100%;
         word-wrap: break-word;
       }
     }
