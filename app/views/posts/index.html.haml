@@ -9,10 +9,10 @@
     .posts_index-left_side
       %h3 keywords
       %ur
-      - @tags.each do |key,value|
+      - @tags.each do |tag|
         %li
-          =link_to posts_searches_path(keyword: key) do
-            ="#{key}　#{value}冊"
+          =link_to posts_searches_path(keyword: tag) do
+            ="#{tag.name}　#{tag.posts.count}冊"
     .posts_index-right_side
       .posts_index-about
         %h1 ABOUT SITE
