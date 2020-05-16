@@ -1,5 +1,6 @@
 class Posts::SearchesController < ApplicationController
   def index
-    @posts = Post.search(params[:keyword])
+    result = Post.search(params[:keyword])
+    @posts = Kaminari.paginate_array(result).page(params[:page]).per(3)
   end
 end
