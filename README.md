@@ -18,9 +18,9 @@
 【古書を探している場合】
 
 　① 検索フォームにて書籍名などで検索していただく
-　
+
  ② keywords蘭のタグから探していただく
-　
+ 
  ③ 以上の操作を行っても見つからない場合は、お問い合わせフォームにて問い合わせください。
 
 ![ER図](https://github.com/watcher041/Elect_Archive/blob/master/erd.jpg)
