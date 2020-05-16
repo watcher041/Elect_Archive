@@ -1,3 +1,4 @@
+
 class PostsController < ApplicationController
 
   before_action :find_post, only: [:edit,:update,:destroy]
@@ -12,9 +13,7 @@ class PostsController < ApplicationController
   end
 
   def create
-
     @post = Post.new(post_params)
-
     if @post.save
       flash[:notice] = '投稿が完了しました'
       redirect_to root_path
@@ -27,7 +26,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    if @post.update(post_params)
+    if @post.update(updated_params)
       redirect_to root_path
     else
       render "edit"
@@ -42,13 +41,29 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def find_post
+    @post = Post.find(params[:id])
+  end
   
   def post_params
     params.require(:post).permit(:title,:author,:image,:text,:user_id,tags_attributes:[:id,:name,:_destroy])
   end
 
-  def find_post
-    @post = Post.find(params[:id])
+  def updated_params
+    updated_params = post_params
+    middle_table = @post.posts_tags
+    updated_params[:tags_attributes].each{ |key,value| 
+
+      # 変更の際、削除されたもの以外は飛ばす
+      next if value[:_destroy] != "1" || value[:id].nil?
+
+      middle_id = middle_table.find_by(tag_id: value[:id]).id
+      PostsTag.delete(middle_id)
+      updated_params[:tags_attributes].delete(key)
+    }
+    
+    return updated_params
   end
 
 end

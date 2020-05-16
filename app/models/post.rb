@@ -3,12 +3,14 @@ class Post < ApplicationRecord
   # タグを重複なしに保存する
   before_save :find_or_create_tag
   after_destroy :not_association_tags_delete
+  after_update :not_association_tags_delete
 
   # has_manyを使用しないとdependentが適用されない
   belongs_to :user
-  has_and_belongs_to_many :tags
+  has_many :posts_tags
+  has_many :tags, through: :posts_tags ,dependent: :destroy
 
-  accepts_nested_attributes_for :tags, reject_if: :all_blank, allow_destroy: true
+  accepts_nested_attributes_for :tags, allow_destroy: true
   mount_uploader :image, ImageUploader
 
   with_options presence: true do
