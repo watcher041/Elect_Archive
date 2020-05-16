@@ -118,6 +118,13 @@ form {
   }
 }
 
+.pagenate{
+  & span, & a {
+    color: black;
+    font-size:20px;
+  }
+}
+
 .footer {
     @include header_size;
     @include position_center;

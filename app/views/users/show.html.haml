@@ -13,8 +13,6 @@
     -if @user.text
       %h3 【自己紹介】
       = simple_format(@user.text)
-      
-  
 
   %h2 POSTS
   -@posts.each do |post|
@@ -33,3 +31,6 @@
             %p=link_to "削除", post_path(post.id), method: "delete"
       %h3 【書籍情報】
       = simple_format(post.text)
+  
+  .pagenate
+    = paginate @posts 
