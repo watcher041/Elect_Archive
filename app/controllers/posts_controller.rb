@@ -26,6 +26,7 @@ class PostsController < ApplicationController
   end
 
   def update
+     @post.updated_at = Time.now
     if @post.update(updated_params)
       redirect_to root_path
     else
