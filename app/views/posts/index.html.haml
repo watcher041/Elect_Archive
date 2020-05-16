@@ -38,9 +38,12 @@
         %h1 返信一覧
         %div
           - @answers.each do |answer|
-            %p= "#{answer.created_at.strftime('%Y/%m/%d %H:%M') }  返信"
-            %p= "#{answer.comment.name}様 > #{answer.text}"
-            %p= "担当者：#{answer.name}"
+            %p ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            %p= "#{answer.created_at.strftime('%Y/%m/%d %H:%M') }　#{answer.name} から返信"
+            %p= "#{answer.comment.name} 様、 #{answer.text}"
+            %p= "お問い合わせ内容（ #{answer.comment.created_at.strftime('%Y/%m/%d %H:%M') }  ）"
+            %p=  "＞ #{answer.comment.text}"
+            %p ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
   
 
