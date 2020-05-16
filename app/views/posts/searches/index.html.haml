@@ -1,5 +1,5 @@
 
-%h2 #{@posts.length}件ヒットしました
+%h2 #{@posts.length}冊見つかりました。
 - @posts.each do |post|
   .users_show-profile
     .users_show-info
@@ -18,3 +18,6 @@
         %p= post.created_at.strftime('%Y/%m/%d %H:%M') 
     %h3 【書籍情報】
     = simple_format(post.text)
+
+.pagenate
+  = paginate @posts 
