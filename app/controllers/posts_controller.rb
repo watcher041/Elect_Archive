@@ -5,7 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @answers = Answer.includes(:comment).order("updated_at DESC")
-    @tags = Tag.includes(:posts)
+    @tags = Tag.includes(:posts).order(name: :ASC)
   end
 
   def new
