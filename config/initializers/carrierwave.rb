@@ -1,4 +1,8 @@
 
+require 'carrierwave/storage/abstract'
+require 'carrierwave/storage/file'
+require 'carrierwave/storage/fog'
+
 if Rails.env.production?
   CarrierWave.configure do |config|
     config.fog_credentials = {
@@ -8,5 +12,6 @@ if Rails.env.production?
       region: 'ap-northeast-1'　# S3バケット作成時に指定したリージョン。左記は東京を指す
     }
     config.fog_directory  = 'elect-archive' # 作成したS3バケット名
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/elect-archive'
   end
 end
