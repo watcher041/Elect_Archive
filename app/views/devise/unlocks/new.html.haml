@@ -3,7 +3,7 @@
   = render "devise/shared/error_messages", resource: resource
   
     = f.label :email
-    %br/
+    
     = f.email_field :email, autofocus: true, autocomplete: "email"
   
     = f.submit "Resend unlock instructions"

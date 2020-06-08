@@ -1,4 +1,32 @@
 
+.devise_main{
+   margin:20px;
+  > h2 {
+    background-color: $header_back_color;
+    font-size:40px;
+    width:30%;
+    margin:30px auto;
+    text-align: center;
+    padding:10px;
+    border: 2px groove;
+  }
+  > form{
+    width:800px;
+    margin:0 auto;
+    & label {
+      margin:10px;
+    }
+    & input {
+      width:500px;
+    }
+  }
+
+}
+
+.error {
+  text-align: center;
+  background-color: red;
+}
 
 .registration_edit {
   &-top {
@@ -28,8 +56,3 @@
 }
 
 
-.error {
-  background-color: $header_back_color;
-  text-align: center;
-  padding:10px;
-}

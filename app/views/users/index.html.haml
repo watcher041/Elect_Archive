@@ -34,14 +34,14 @@
       .users_index-main-right-comment
         %h2 返信掲示板
         .users_index-main-right-comment-board
-        - @comments.each do |comment|
-          - if comment.answer.present?
-            %p ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-            %p= "#{comment.updated_at.strftime('%Y/%m/%d %H:%M') }　#{comment.user.name} から返信"
-            %p= "#{comment.name} 様、 #{comment.answer}"
-            %p= "お問い合わせ内容（ #{comment.created_at.strftime('%Y/%m/%d %H:%M') }  ）"
-            %p=  "＞ #{comment.text}"
-            %p ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+          - @comments.each do |comment|
+            - if comment.answer.present?
+              %p ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+              %p= "#{comment.updated_at.strftime('%Y/%m/%d %H:%M') }　#{comment.user.name} から返信"
+              %p= "#{comment.name} 様、 #{comment.answer}"
+              %p= "お問い合わせ内容（ #{comment.created_at.strftime('%Y/%m/%d %H:%M') }  ）"
+              %p=  "＞ #{comment.text}"
+              %p ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     
   
 
