@@ -10,7 +10,7 @@
         %details
           %summary= tag.name
           - tag.children.each do |child_tag|
-            = child_tag
+            = link_to child_tag.name, tag_path(child_tag.id)
     .users_index-main-right
       .users_index-main-right-about
         %h2 ABOUT SITE

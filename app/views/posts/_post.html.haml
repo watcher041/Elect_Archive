@@ -1,25 +1,23 @@
 
-.posts__form
-  - if post.errors.any?
-    .error
-      - post.errors.full_messages.each do |error|
-        %p= error
-  - else
-    = form_with(model: post, local: true) do |form|
-      .registration_edit-top
-        .registration_edit-list        
-          = form.text_field :title, placeholder: "title（タイトル）"
-          = form.text_field :author, placeholder: "author（著者）"
-        = form.label :image, class:"registration_edit-image" do
-          = form.file_field :image, class: "image-file"
-          = image_tag post.image.url ,class: "file-image" 
-      %br
-      = form.text_area :text, placeholder: "text（書籍紹介）" , rows: 10
-      %br
-      = form.nested_fields_for :tags, son_model do |list|
-        = list.text_field :name, placeholder: "tag（タグ）"
-        = list.remove_nested_fields_link '削除'
-      = form.add_nested_fields_link :tags ,'タグを追加'
-      = form.hidden_field :user_id, value: current_user.id
-      = form.submit "SEND"
+- if post.errors.any?
+  .error
+    - post.errors.full_messages.each do |error|
+      %p= error
+- else
+  = form_with(model: post, local: true) do |form|
+    .registration_edit-top
+      .registration_edit-list        
+        = form.text_field :title, placeholder: "title（タイトル）"
+        = form.text_field :author, placeholder: "author（著者）"
+      = form.label :image, class:"registration_edit-image" do
+        = form.file_field :image, class: "image-file"
+        = image_tag post.image.url ,class: "file-image" 
+    %br
+    = form.text_area :text, placeholder: "text（書籍紹介）" , rows: 10
+    %br
+    = form.nested_fields_for :tags, son_model do |list|
+      = list.text_field :name, placeholder: "tag（タグ）"
+      = list.remove_nested_fields_link '削除'
+    = form.add_nested_fields_link :tags ,'タグを追加'
+    = form.submit "SEND"
 

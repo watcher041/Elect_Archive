@@ -1,0 +1,17 @@
+
+.posts {
+
+  &_new {
+    > form {
+      width:1000px;
+      & fieldset {
+        width:80%;
+        > input {
+          width:90%;
+          margin:10px;
+        }
+      }
+    }
+  }
+
+}

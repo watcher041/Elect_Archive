@@ -3,13 +3,27 @@ class PostsController < ApplicationController
 
   before_action :find_post, only: [:edit,:update,:destroy]
 
-
   def new
     @post = Post.new
   end
 
   def create
-    @post = Post.new(post_params)
+
+    # タグの親を探索し、タグをその子供として保存
+    tag_ids = []
+    params[:post][:tags_attributes].each do |key,tag|
+      word = Zipang.to_slug tag[:name]
+      parent = Tag.find_by( ancestry: nil , name: word[0].upcase )
+      child = parent.children.find_or_create_by( name:tag[:name])
+      tag_ids << child.id
+    end
+
+    # tag_idsで中間テーブルにidの関連情報を保存
+    middle_post_params = post_params
+    middle_post_params[:tag_ids] = tag_ids
+    
+    # 投稿情報の保存
+    @post = Post.new(middle_post_params)
     if @post.save
       flash[:notice] = '投稿が完了しました'
       redirect_to root_path
@@ -44,7 +58,7 @@ class PostsController < ApplicationController
   end
   
   def post_params
-    params.require(:post).permit(:title,:author,:image,:text,:user_id,tags_attributes:[:id,:name,:_destroy])
+    params.require(:post).permit(:title,:author,:image,:text,tag_ids: []).merge(user_id:current_user.id)
   end
 
   def updated_params
