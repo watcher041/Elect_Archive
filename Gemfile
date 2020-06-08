@@ -83,3 +83,5 @@ gem 'jquery-rails'
 gem 'nested_form_fields'
 gem 'fog-aws'
 gem "font-awesome-sass"
+gem 'zipang'
+gem "ancestry"

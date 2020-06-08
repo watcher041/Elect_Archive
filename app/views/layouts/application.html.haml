@@ -1,13 +1,12 @@
 
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
     %title Elect Archive
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-  
   %body
 
     .header
@@ -16,20 +15,21 @@
         - if user_signed_in?
           = link_to  "掲示板", comments_path
           = link_to  "新規投稿", new_post_path
-          .header-lists
-            = current_user.name
+          .header-nav-lists
+            %p= current_user.name
             %ul
               %li= link_to "マイページ", user_path(current_user.id)
               %li= link_to "アカウント設定", edit_user_registration_path
               %li= link_to "ログアウト", destroy_user_session_path, method: :delete
         - else
           = link_to "ログイン", new_user_session_path
-          = link_to "新規登録", new_user_registration_path
+          = link_to "新規登録", new_user_registration_path 
+          
+    .content
+      %p.notice=notice
+      %p.alert=alert
     
-    .contents
-      - flash.each do |key, value|
-        = content_tag :div, value, class: key
-      = yield
+    = yield
 
     .footer
       %p Copyright &copy; Elect Archive 2020.

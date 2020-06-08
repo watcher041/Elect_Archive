@@ -3,10 +3,6 @@ class PostsController < ApplicationController
 
   before_action :find_post, only: [:edit,:update,:destroy]
 
-  def index
-    @answers = Answer.includes(:comment).order("updated_at DESC")
-    @tags = Tag.includes(:posts).order(name: :ASC)
-  end
 
   def new
     @post = Post.new

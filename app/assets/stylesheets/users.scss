@@ -1,6 +1,68 @@
 
 .users{
 
+  &_index {
+    &-top {
+        height:600px;
+        width:80%;
+        background-image: image-url("top.jpg");
+        background-size: cover;
+        margin:0 auto;
+        @include position_center;
+        flex-direction: column;
+      > h2,h3{
+        background-color: white;
+        padding:0 10px;
+        border:none;
+        color:black;
+        margin:20px;
+      }
+      > h2 {
+        font-size:30px;
+      }
+    }
+    &-main {
+        background-color: $header_back_color;
+        display: flex;
+        justify-content: space-between;
+      &-left {
+        border:1px solid white;
+        width:15%;
+        > h2 {
+          text-align: center;
+          border:1px solid white;
+          padding:10px;
+        }
+        > details {
+          border: 1px solid white;
+          padding:10px 10px;
+        }
+      }
+      &-right {
+          width:calc( 100% - 15% );
+          border:1px solid white;
+        & h2 {
+          text-align: center;
+          font-size:40px;
+          margin:20px;
+        }
+        &-about,&-contact,&-comment {
+           border:1px solid white;
+           padding:40px;
+           > p {
+             text-align: center;
+           }
+           &-board {
+            border:1px solid white;
+            height:300px;
+           }
+        }
+      }
+    }
+  }
+
+
+
   &_show {
     &-profile {
       background-color: $header_back_color;

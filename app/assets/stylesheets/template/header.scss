@@ -1,0 +1,61 @@
+
+.header {
+  @include header_size;
+  @include position_center;
+  position:fixed;
+  justify-content: space-between;
+  padding:0 15%;
+  > h1 {
+    font-size:30px;
+    font-weight: bold;
+  }
+  &-nav {
+      display: flex;
+      align-items: center;
+    > a {
+      margin-right:20px;
+    }
+    &-lists {
+        position: relative;
+      > p:after {
+        content: " ▼";
+        font-size: 15px;
+      }
+      > ul {
+        display: none;
+      }
+      &:hover ul {
+        display: block;
+        position: absolute;
+        width:140px;
+        background-color:$header_back_color;
+        border: 1px groove;
+        padding:5px 10px;
+      }
+    }
+  }
+}
+
+.content {
+    padding-top:$header_height;
+  > .header_hide {
+    width:100%;
+    padding-top:$header_height; 
+  }
+  > .notice,.alert {
+    color: white;
+    text-align: center;
+    font-size:20px;
+  }
+  > .notice {
+    background-color: blue;
+  }
+  > .alert {
+    background-color: red;
+  }
+}
+
+.footer {
+    @include header_size;
+    @include position_center;
+}

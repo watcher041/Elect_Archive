@@ -1,10 +1,11 @@
 
-@import "config/setting";
 @import "font-awesome-sprockets";
 @import "font-awesome";
 
-@import "main";
-@import "posts";
+@import "config/reset";
+@import "config/common";
+
+@import "template/header";
 @import "devise";
 @import "users";
 @import "comments";

@@ -1,0 +1,47 @@
+
+.users_index
+  .users_index-top
+    %h2 古書に出会いたいあなたへ
+    %h3 ここで探してみませんか？
+  .users_index-main
+    .users_index-main-left
+      %h2 キーワード索引
+      - @tags.each do |tag|
+        %details
+          %summary= tag.name
+          - tag.children.each do |child_tag|
+            = child_tag
+    .users_index-main-right
+      .users_index-main-right-about
+        %h2 ABOUT SITE
+        %p
+        　このサイトは、古書を探している方々がその所在をすぐ見つけられるようにするために作成されたものです。
+        古書を投稿したい方は、新規登録をしてログインを実施してから新規投稿してください。
+        古書をお探しの方は、以下の検索フォームにて検索していただくか、
+        サイドバーのキーワード索引から探していただくようお願いします。
+        その他、書籍が見つからないなどといった内容につきましては、
+        以下のフォームにてお問い合わせ下さい。
+        = form_with( url: posts_searches_path, local: true, method: :get) do |form|
+          = form.text_field :keyword, placeholder: "投稿を検索する"
+          = form.submit "検索"
+      .users_index-main-right-contact
+        %h2 お問い合わせフォーム
+        %p お問い合わせに対する回答につきましては、以下にある掲示板にてご確認ください。
+        = form_with( url: comments_path, method: "post", local: true) do |form|
+          = form.text_field :name, placeholder: "お名前"
+          = form.text_area :text, placeholder: "お問い合わせ内容" ,rows: 5
+          = form.submit "送信"
+      .users_index-main-right-comment
+        %h2 返信掲示板
+        .users_index-main-right-comment-board
+        - @comments.each do |comment|
+          - if comment.answer.present?
+            %p ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            %p= "#{comment.updated_at.strftime('%Y/%m/%d %H:%M') }　#{comment.user.name} から返信"
+            %p= "#{comment.name} 様、 #{comment.answer}"
+            %p= "お問い合わせ内容（ #{comment.created_at.strftime('%Y/%m/%d %H:%M') }  ）"
+            %p=  "＞ #{comment.text}"
+            %p ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+  
+
