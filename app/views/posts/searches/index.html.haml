@@ -1,23 +1,19 @@
 
-%h2 #{@posts.total_count}冊見つかりました。
-- @posts.each do |post|
-  .users_show-profile
-    .users_show-info
-      .users_show-image
-        = link_to user_path(post.user.id) do
-          = image_tag post.image.url
-      .users_show-list
-        %h3 【タイトル】
-        %p= post.title
-        %h3 【著者】
-        %p= post.author
-      .users_show-list
-        %h3 【投稿者】
-        %p= post.user.name
-        %h3 【投稿日】
-        %p= post.created_at.strftime('%Y/%m/%d %H:%M') 
-    %h3 【書籍情報】
-    = simple_format(post.text)
-
-.pagenate
-  = paginate @posts 
+.posts_searches_index
+  %h2 #{@posts.total_count}冊見つかりました
+  - @posts.each do |post|
+    .posts_searches_index-profile{class:"users_show-profile"}
+      .posts_searches_index-profile-info{class:"users_show-profile-info"}
+        .posts_searches_index-profile-info-image{class:"users_show-profile-info-image"} 
+          = link_to user_path(post.user.id) do
+            = image_tag post.image.url
+        .posts_searches_index-profile-info-list{class:"users_show-profile-info-list"}
+          %h3= "タイトル: #{post.title}"
+          %h3= "著者: #{post.author}"
+          %h3= "投稿者: #{post.user.name}"
+          %h3= "投稿日: #{post.created_at.strftime('%Y/%m/%d %H:%M') }"
+      .posts_searches_index-profile-text{class:"users_show-profile-text"}
+        %h3 【書籍情報】
+        %p= post.text
+    .pagenate
+      = paginate @posts 

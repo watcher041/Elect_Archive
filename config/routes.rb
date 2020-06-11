@@ -13,6 +13,5 @@ Rails.application.routes.draw do
   end
   resources :users, only: [:show]
   resources :posts, except: [:index,:show]
-  resources :tags, only: [:index,:show]
 
 end

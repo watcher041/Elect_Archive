@@ -5,11 +5,12 @@
       %p= error
 - else
   = form_with(model: post, local: true) do |form|
-    .registration_edit-top
-      .registration_edit-list        
+    .devise_main-top
+      .devise_main-top-list        
         = form.text_field :title, placeholder: "title（タイトル）"
+        %br
         = form.text_field :author, placeholder: "author（著者）"
-      = form.label :image, class:"registration_edit-image" do
+      = form.label :image, class:"devise_main-image" do
         = form.file_field :image, class: "image-file"
         = image_tag post.image.url ,class: "file-image" 
     %br

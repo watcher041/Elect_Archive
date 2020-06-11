@@ -9,35 +9,23 @@ class PostsController < ApplicationController
 
   def create
 
-    # タグの親を探索し、タグをその子供として保存
-    tag_ids = []
-    params[:post][:tags_attributes].each do |key,tag|
-      word = Zipang.to_slug tag[:name]
-      parent = Tag.find_by( ancestry: nil , name: word[0].upcase )
-      child = parent.children.find_or_create_by( name:tag[:name])
-      tag_ids << child.id
-    end
-
-    # tag_idsで中間テーブルにidの関連情報を保存
-    middle_post_params = post_params
-    middle_post_params[:tag_ids] = tag_ids
-    
     # 投稿情報の保存
-    @post = Post.new(middle_post_params)
+    @post = Post.new(post_params)
     if @post.save
       flash[:notice] = '投稿が完了しました'
       redirect_to root_path
     else 
       render "new"
     end
+
   end
 
   def edit
   end
 
   def update
-     @post.updated_at = Time.now
-    if @post.update(updated_params)
+    update_params = @post.update_or_delete_tag(post_params)
+    if @post.update(update_params)
       redirect_to root_path
     else
       render "edit"
@@ -45,10 +33,21 @@ class PostsController < ApplicationController
   end
 
   def destroy
-
-    @post.destroy
     
-    redirect_to root_path
+    # 削除する前に、関連づいているタグを取得
+    tags = @post.tags
+    tags.each do |tag|
+      PostsTag.find_by( post_id: params[:id] , tag_id: tag.id ).delete
+      tag.delete if tag.posts.length == 0
+    end
+
+    # 中間テーブルまでの削除を行う
+    if @post.delete
+      redirect_to root_path, notice: "削除が完了しました"
+    else
+      redirect_to root_path, alert: "削除が失敗しました"
+    end
+
   end
 
   private
@@ -58,23 +57,7 @@ class PostsController < ApplicationController
   end
   
   def post_params
-    params.require(:post).permit(:title,:author,:image,:text,tag_ids: []).merge(user_id:current_user.id)
-  end
-
-  def updated_params
-    updated_params = post_params
-    middle_table = @post.posts_tags
-    updated_params[:tags_attributes].each{ |key,value| 
-
-      # 変更の際、削除されたもの以外は飛ばす
-      next if value[:_destroy] != "1" || value[:id].nil?
-
-      middle_id = middle_table.find_by(tag_id: value[:id]).id
-      PostsTag.delete(middle_id)
-      updated_params[:tags_attributes].delete(key)
-    }
-    
-    return updated_params
+    params.require(:post).permit(:title,:author,:image,:text,tags_attributes: [:name,:_destroy,:id] ).merge(user_id:current_user.id)
   end
 
 end

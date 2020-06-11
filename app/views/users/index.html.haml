@@ -8,9 +8,10 @@
       %h2 キーワード索引
       - @tags.each do |tag|
         %details
-          %summary= tag.name
-          - tag.children.each do |child_tag|
-            = link_to child_tag.name, tag_path(child_tag.id)
+          %summary= "#{tag.name}（#{tag.children.length} 項目）"
+          %ul
+            - tag.children.each do |child_tag|
+              %li= link_to child_tag.name, posts_searches_path(tag_id:child_tag.id)
     .users_index-main-right
       .users_index-main-right-about
         %h2 ABOUT SITE
@@ -36,12 +37,11 @@
         .users_index-main-right-comment-board
           - @comments.each do |comment|
             - if comment.answer.present?
-              %p ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-              %p= "#{comment.updated_at.strftime('%Y/%m/%d %H:%M') }　#{comment.user.name} から返信"
-              %p= "#{comment.name} 様、 #{comment.answer}"
-              %p= "お問い合わせ内容（ #{comment.created_at.strftime('%Y/%m/%d %H:%M') }  ）"
-              %p=  "＞ #{comment.text}"
-              %p ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+              .users_index-main-right-comment-board-content
+                %p= "#{comment.updated_at.strftime('%Y/%m/%d %H:%M') }　#{comment.user.name} から返信"
+                %p= "#{comment.name} 様、 #{comment.answer}"
+                %p= "お問い合わせ内容（ #{comment.created_at.strftime('%Y/%m/%d %H:%M') }  ）"
+                %p=  "＞ #{comment.text}"
     
   
 

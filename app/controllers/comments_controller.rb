@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
 
   def index
-    @comments = Comment.where(answer_id:nil).order("created_at DESC")
+    @comments = Comment.where(answer:nil).order("created_at DESC")
   end
   
   def create

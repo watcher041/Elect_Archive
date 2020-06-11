@@ -12,23 +12,21 @@ class UsersController < ApplicationController
     
   end
 
+def new 
+end
 
-# def new
-  
-# end
-
-# def create
-#     @answer = Answer.new(answer_params)
-#   if @answer.save
-#     comment = Comment.find(params[:comment_id])
-#     if comment.update(answer_id: @answer.id)
-#       flash[:notice] = 'メッセージが送信されました'
-#     end
-#       redirect_to root_path
-#   else
-#     render "new" 
-#   end
-# end
+def create
+    @answer = Answer.new(answer_params)
+  if @answer.save
+    comment = Comment.find(params[:comment_id])
+    if comment.update(answer_id: @answer.id)
+      flash[:notice] = 'メッセージが送信されました'
+    end
+      redirect_to root_path
+  else
+    render "new" 
+  end
+end
 
 
     def show

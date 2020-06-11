@@ -3,15 +3,37 @@
 
   &_new {
     > form {
-      width:1000px;
       & fieldset {
-        width:80%;
+        width:100%;
         > input {
           width:90%;
-          margin:10px;
+        }
+        > a {
+          margin-left:10px;
         }
       }
     }
+  }
+
+  &_searches {
+
+    &_index {
+        @include position_center;
+        flex-direction: column;
+        margin-bottom:50px;
+      > h2 {
+        background-color: $header_back_color;
+        font-size:40px;
+        display: inline-block;
+        margin:30px auto;
+        text-align: center;
+        padding:10px 30px;
+        border: 2px groove;
+      }
+
+
+    }
+
   }
 
 }
