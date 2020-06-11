@@ -68,6 +68,7 @@ end
 group :production do
   gem 'unicorn', '5.4.1'
   gem 'pg'
+  gem 'rjb', '~> 1.6', '>= 1.6.1'
 end
 
 # gem 'pg', group: :production
@@ -81,7 +82,7 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'jquery-rails'
 gem 'nested_form_fields'
-gem 'rjb', '~> 1.6', '>= 1.6.1'
+
 gem 'fog-aws'
 gem "font-awesome-sass"
 gem 'zipang'
