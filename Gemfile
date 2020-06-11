@@ -45,7 +45,6 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
-  gem 'mysql2', '>= 0.4.4', '< 0.6.0'
 end
 
 group :development do
