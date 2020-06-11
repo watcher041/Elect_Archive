@@ -8,8 +8,6 @@ class PostsController < ApplicationController
   end
 
   def create
-
-    # 投稿情報の保存
     @post = Post.new(post_params)
     if @post.save
       flash[:notice] = '投稿が完了しました'
@@ -17,7 +15,6 @@ class PostsController < ApplicationController
     else 
       render "new"
     end
-
   end
 
   def edit
