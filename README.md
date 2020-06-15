@@ -42,4 +42,4 @@
 　新規登録・ログイン機能、検索機能、ハッシュタグ機能、画像プレビュー機能、書籍投稿機能、コメント投稿機能、メール認証機能、
  
 
-![ER図](https://github.com/watcher041/Elect_Archive/blob/master/erd.jpg)
+![ER図](https://github.com/watcher041/new_app/blob/master/erd.jpg)

@@ -3,9 +3,8 @@
 // 変数
 $header_back_color:#003333;
 $header_height:80px;
-$main_left_width:15%;
-$main_right_about_height:500px;
-$main_right_contact_height:600px;
+$main_left_width:40%;
+$main_height:1600px;
 
 // ヘッダー、フッターの装飾
 @mixin header_size() {

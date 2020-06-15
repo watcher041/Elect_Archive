@@ -25,6 +25,7 @@
         background-color: $header_back_color;
         display: flex;
         justify-content: space-between;
+        height:$main_height;
       &-left {
         border:1px solid white;
         width:$main_left_width;
@@ -44,7 +45,6 @@
         }
       }
       &-right {
-          width:calc( 100% - #{$main_left_width} );
           border:1px solid white;
         & h2 {
           text-align: center;
@@ -54,6 +54,7 @@
         &-about,&-contact {
            border:1px solid white;
            padding:40px;
+           height:calc( #{$main_height} / 3 )
            > p {
              text-align: center;
            }

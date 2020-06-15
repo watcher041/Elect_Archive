@@ -3,10 +3,10 @@
 lock '3.14.0'
 
 # Capistranoのログの表示に利用する
-set :application, 'Elect_Archive'
+set :application, 'new_app'
 
 # どのリポジトリからアプリをpullするかを指定する
-set :repo_url,  'git@github.com:watcher041/Elect_Archive.git'
+set :repo_url,  'git@github.com:watcher041/new_app.git'
 
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
