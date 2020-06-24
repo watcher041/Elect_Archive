@@ -1,0 +1,23 @@
+
+version: '3' # Dockerのバージョン（バージョンによって書き方が異なる）
+services: # コンテナから提供されるサービス一覧
+  db: # コンテナの名前
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment: # 環境変数
+      POSTGRES_PASSWORD: postgres # postgresqlではパスワードが空なのはダメなので、追加
+  web: # webサーバー（nginxのようなもの）
+    build: .  # イメージ(コンテナのテンプレ)を作るためのDockerfileがある場所
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:  # マウント。コンテナのデータと、手元のデータが同期する。
+      - .:/myapp  # 手元のパス : コンテナのパス : キャッシュオプション
+    ports:
+      - "3000:3000"  # 外部公開ポート番号 : コンテナのポート番号
+    depends_on:
+      - db
+    environment:
+      - GMAIL_ADRESS
+      - GMAIL_PASSWORD
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY

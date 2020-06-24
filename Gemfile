@@ -80,10 +80,9 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'jquery-rails'
 gem 'nested_form_fields'
+gem 'rjb'
 gem 'fog-aws'
 gem "font-awesome-sass"
-gem 'rjb'
-gem 'kuromoji'
-gem 'romaji'
 gem 'zipang'
 gem "ancestry"
+

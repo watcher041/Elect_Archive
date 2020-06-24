@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2020_06_08_002347) do
 
-  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "comments", force: :cascade do |t|
     t.string "name", null: false
     t.text "text", null: false
     t.text "answer"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2020_06_08_002347) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "posts", force: :cascade do |t|
     t.string "title", default: "", null: false
     t.string "author", default: "", null: false
     t.text "image", null: false
@@ -32,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_06_08_002347) do
     t.integer "user_id"
   end
 
-  create_table "posts_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "posts_tags", force: :cascade do |t|
     t.bigint "post_id"
     t.bigint "tag_id"
     t.datetime "created_at", null: false
@@ -41,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_06_08_002347) do
     t.index ["tag_id"], name: "index_posts_tags_on_tag_id"
   end
 
-  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "tags", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,7 +52,7 @@ ActiveRecord::Schema.define(version: 2020_06_08_002347) do
     t.index ["ancestry"], name: "index_tags_on_ancestry"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "name", default: "", null: false
     t.string "email", default: "", null: false
     t.text "image"
