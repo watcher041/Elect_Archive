@@ -29,7 +29,7 @@
  
  ## 本番環境(デプロイ先　テストアカウント＆ID)
  
- デプロイ先：http://elect-archive.herokuapp.com/
+ デプロイ先：http://docker-elect-archive.herokuapp.com/
  
  テストアカウント：認証メール方式であるため、ご自身のメールアドレスで登録いただきますようお願いいたします。
  
