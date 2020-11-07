@@ -76,7 +76,7 @@ gem 'pry-rails'
 gem 'devise'
 gem 'kaminari'
 gem 'haml-rails'
-gem 'carrierwave'
+gem 'carrierwave', '~> 0.9'
 gem 'mini_magick'
 gem 'jquery-rails'
 gem 'nested_form_fields'
@@ -85,4 +85,6 @@ gem 'fog-aws'
 gem "font-awesome-sass"
 gem 'zipang'
 gem "ancestry"
+gem 'carrierwave-dropbox'
+gem 'concurrent-ruby', '~> 1.1.7'
 
